@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show User</title>
+</head>
+<body>
+    {% for data in edit_data %}
+    <div>
+        <h1>User {{data.id}}</h1>
+        <form method="get" action="/">
+            <button type="submit">Home
+        </form>    
+    </div>
+    <div>Full Name: {{data.first_name}} {{data.last_name}}</div>
+    <div> Email: {{data.email}} </div>
+    <div> Created On: {{data.created_at}} </div>
+    <div> Last Updated On: {{data.created_at}} </div>
+    <div>
+        <form method="POST" action="/edit">
+            <input type="hidden" name="id" id="id" value="{{data.id}}">
+            <button type="submit">Edit
+        </form>
+        <form method="POST" action="/delete">
+            <input type="hidden" name="id" id="id" value="{{data.id}}">
+            <button type="submit">Delete
+        </form>    
+    </div>
+    {% endfor %}    
+</body>
+</html>

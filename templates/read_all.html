@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/styles.css') }}"/>
+</head>
+<body>
+
+    <h1>All Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in all_users %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.first_name}} {{user.last_name}} </td>
+                <td> {{user.email}} </td>
+                <td> {{user.created_at}} </td>
+                <td class="container"> 
+                    <form method="POST" action="/show">
+                        <input type="hidden" name="id" id="id" value="{{user.id}}">
+                        <button type="submit">Show
+                    </form>
+                    <form method="POST" action="/edit"> 
+                        <input type="hidden" name="id" id="id" value="{{user.id}}">
+                        <button type="submit">Edit
+                    </form>
+                    <form method="POST" action="/delete">
+                        <input type="hidden" name="id" id="id" value="{{user.id}}">
+                        <button type="submit">Delete
+                    </form>                            
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form method="get" action="/newUser">
+        <button type="submit">Add a New User
+    </form>
+</body>
+</html>
